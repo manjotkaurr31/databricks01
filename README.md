@@ -205,13 +205,16 @@ Ranks the top 20 most seismically active regions. Columns: `region`, `earthquake
 
 ## Dashboard
 
-**Name:** `Earthquakes_Worldwide` | **Task:** `earthquakes_dashboard`
+**Name:** `Earthquakes_Worldwide` | **Task:** `earthquakes_dashboard` | This dashboard refreshes at every run of the job.
 
 | Visualisation | Dataset | Chart Type |
 |---|---|---|
 | Magnitude Breakdown | `vw_magnitude_segmentation` | Pie / Donut |
 | Earthquake Map | `vw_earthquake_map` | Point Map |
 | Frequent Areas | `vw_frequent_areas` | Table |
+
+
+<img src="images/dashboard.png" width="600">
 
 ---
 
