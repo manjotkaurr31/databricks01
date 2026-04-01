@@ -15,7 +15,7 @@ A fully automated, end-to-end data engineering pipeline that ingests real-time e
 
 2. Create a catalog. In this project the catalog used is `mk31_dev`
 
-<img src="images/catalog" width="600">
+<img src="images/catalog.png" width="600">
 
 ---
 
@@ -85,7 +85,7 @@ An HTTP connection to the USGS API is registered in Unity Catalog under Catalog 
 | Auth scheme | Bearer |
 
 <img src="images/connection_configuration.png" width="600">
-<img src="images/connection_prmission.png" width="600">
+<img src="images/connection_permission.png" width="600">
 
 ---
 
