@@ -1,5 +1,4 @@
-# 🌍 Earthquakes Worldwide
-## End-to-End Job Orchestrated Data Pipeline on Databricks
+# End-to-End Job Orchestrated Data Pipeline on Databricks
 
 A fully automated, end-to-end data engineering pipeline that ingests real-time earthquake data from the USGS API, processes it through a Medallion Architecture (Bronze → Silver → Gold), and serves it to a live Databricks Dashboard.
 
