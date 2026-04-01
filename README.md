@@ -1,4 +1,5 @@
-# 🌍 Earthquakes Worldwide — End-to-End Data Pipeline on Databricks
+# 🌍 Earthquakes Worldwide
+## End-to-End Job Orchestrated Data Pipeline on Databricks
 
 A fully automated, end-to-end data engineering pipeline that ingests real-time earthquake data from the USGS API, processes it through a Medallion Architecture (Bronze → Silver → Gold), and serves it to a live Databricks Dashboard.
 
@@ -6,7 +7,19 @@ A fully automated, end-to-end data engineering pipeline that ingests real-time e
 
 ---
 
-## 🏗️ Architecture
+## Pre-requisites
+
+1. Create a Databricks Free Account.
+
+<img src="images/free_account.png" width="600">
+
+2. Create a catalog. In this project the catalog used is `mk31_dev`
+
+<img src="images/catalog" width="600">
+
+---
+
+## Architecture
 
 ```
 USGS Earthquake API (HTTP)
@@ -38,10 +51,10 @@ USGS Earthquake API (HTTP)
 │    Worldwide        │
 └─────────────────────┘
 ```
-
+<img src="images/schemas.png" width="600">
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 databricks01/
@@ -49,6 +62,7 @@ databricks01/
 │   └── notebooks/
 │       ├── ingestion/
 │       │   └── ingestion.py          # Task 1: Fetches data from USGS API → Bronze volume
+│       │   
 │       └── load_gold.py              # Task 3: Creates Gold views from Silver
 ├── transformations/
 │   └── clean_earthquake_data.py      # DLT pipeline logic (Bronze → Silver)
@@ -57,9 +71,9 @@ databricks01/
 
 ---
 
-## 🔗 External Connection
+## External Connection
 
-An HTTP connection to the USGS API is registered in Unity Catalog under **Catalog Explorer → External Data → Connections**:
+An HTTP connection to the USGS API is registered in Unity Catalog under Catalog Explorer → External Data → Connections. However, the same can be achieved via .ipynb code.
 
 | Field | Value |
 |---|---|
@@ -69,6 +83,9 @@ An HTTP connection to the USGS API is registered in Unity Catalog under **Catalo
 | Port | 443 |
 | Base path | `/earthquakes/feed/v1.0/` |
 | Auth scheme | Bearer |
+
+<img src="images/connection_configuration.png" width="600">
+<img src="images/connection_prmission.png" width="600">
 
 ---
 
@@ -82,6 +99,9 @@ Task 1: ingestion_to_bronze
 ```
 
 Tasks run sequentially — each depends on the success of the previous. `catalog_name` is passed as a job-level parameter; no catalog names are hardcoded anywhere in the code.
+
+<img src="images/job.png" width="600">
+<img src="images/job_succeeded.png" width="600">
 
 ---
 
@@ -153,6 +173,9 @@ dlt.apply_changes(
 )
 ```
 
+<img src="images/transformations_succeeded.png" width="600">
+<img src="images/silver_load_succeeded.png" width="600">
+
 ---
 
 ## 🥇 Gold Layer
@@ -180,7 +203,7 @@ Ranks the top 20 most seismically active regions. Columns: `region`, `earthquake
 
 ---
 
-## 📊 Dashboard
+## Dashboard
 
 **Name:** `Earthquakes_Worldwide` | **Task:** `earthquakes_dashboard`
 
@@ -192,7 +215,7 @@ Ranks the top 20 most seismically active regions. Columns: `region`, `earthquake
 
 ---
 
-## 🌿 Branching Strategy
+## Branching Strategy
 
 ```
 develop  ←  active development
@@ -203,7 +226,7 @@ All development happens on `develop`. A Pull Request from `develop → main` tri
 
 ---
 
-## 🔑 Key Design Decisions
+## Key Design Decisions
 
 | Decision | Reason |
 |---|---|
